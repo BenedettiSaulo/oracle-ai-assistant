@@ -12,7 +12,7 @@
 	<artifactId>oracle-ai-assistant</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Java Community AI Assistant</name>
-	<description>Virtual assistant with generative AI and vector search using OCI and Oracle Database 23ai.</description>
+	<description>Virtual assistant with generative AI and vector search using OCI and Oracle Database 26ai.</description>
 	<url/>
 	<licenses>
 		<license/>

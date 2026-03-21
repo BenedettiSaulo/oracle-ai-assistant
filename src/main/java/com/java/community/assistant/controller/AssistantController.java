@@ -1,6 +1,5 @@
 package com.java.community.assistant.controller;
 
-import com.java.community.assistant.repository.BrazilJugEventRepository;
 import com.java.community.assistant.service.AiAssistantService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -20,7 +19,6 @@ import java.util.List;
 public class AssistantController {
 
 	private final AiAssistantService aiService;
-	private final BrazilJugEventRepository brazilJugEventRepository;
 
 	@PostMapping("/ask")
 	@Operation(
@@ -28,12 +26,7 @@ public class AssistantController {
 		description = "It sends a prompt to the OCI Generative AI model and returns the processed response."
 	)
 	public ResponseEntity<String> ask(@RequestBody String question) {
-		float[] questionVector = aiService.generateEmbedding(question);
-
-		List<String> contextSnippets = brazilJugEventRepository.findRelevantContext(questionVector);
-		String context = String.join("\n", contextSnippets);
-
-		String response = aiService.getAiResponse(question, context);
+		String response = aiService.processUserQuestion(question);
 
 		return ResponseEntity.ok(response);
 	}
